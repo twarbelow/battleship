@@ -1,25 +1,39 @@
 class Cell
   attr_reader :coordinate,
               :ship,
-              :cell_status
+              :empty,
+              :false,
+              :spent
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
-    @cell_status = true
+    @empty = true
+    @spent = false
   end
 
 
   def empty?
-    @cell_status
+    @empty
   end
 
-  def place_ship(ship)
-    @cell_status = false
-    @ship = ship
+  def place_ship(name_of_ship)
+    @empty = false
+    @ship = name_of_ship
   end
 
   def fired_upon?
-    @status = t
+    spent
   end
+
+  def fire_upon
+    @spent = true
+    ship.hit
+  end
+
 end
+
+# changed cell_status to empty
+# create fired_upon?
+# create fire_upon
+# change argument in line 20 from ship to name_of_ship to make line 22 more readable 
