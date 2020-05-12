@@ -28,23 +28,15 @@ class Celltest < Minitest::Test
     assert_equal true, @cell.empty?
   end
 
-  # def test_can_place_ship
-  #   @cell.place_ship(@cruiser)
-  #
-  #   assert_equal @cruiser, @cell.ship
-  # end
+  def test_can_place_ship
+    @cell.place_ship(@cruiser)
 
-  # def test_placing_ship_changes_empty
-  #   @cell.place_ship
-  #
-  #
-  # end
+    assert_equal @cruiser, @cell.ship
+  end
 
-# pry(main)> cell.place_ship(cruiser)
-#
-# pry(main)> cell.ship
-# # => #<Ship:0x00007f84f0891238...>
-#
-# pry(main)> cell.empty?
-# # => false
+  def test_placing_ship_changes_empty
+    @cell.place_ship(@cruiser)
+
+    assert_equal false, @cell.empty?
+  end
 end

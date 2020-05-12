@@ -8,15 +8,15 @@ class Cell
   end
 
   def ship
-
+    status
   end
 
   def empty?
     status == nil
   end
 
-  # def place_ship(ship)
-  #   @status = ship
-  # end
+  def place_ship(ship)
+    @status = ship
+  end
 
 end
