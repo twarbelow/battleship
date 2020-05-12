@@ -20,7 +20,23 @@ class Celltest < Minitest::Test
     assert_equal "B4", @cell.coordinate
   end
 
-  def test_
-
+  def test_cell_does_not_have_ship
+    assert_nil nil, @cell.ship
   end
+
+  def test_cell_is_empty
+    assert_equal true, @cell.empty?
+  end
+
+
+# pry(main)> cruiser = Ship.new("Cruiser", 3)
+# # => #<Ship:0x00007f84f0891238...>
+#
+# pry(main)> cell.place_ship(cruiser)
+#
+# pry(main)> cell.ship
+# # => #<Ship:0x00007f84f0891238...>
+#
+# pry(main)> cell.empty?
+# # => false
 end
