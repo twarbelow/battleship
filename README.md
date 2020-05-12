@@ -2,7 +2,7 @@
 Repo for Turing Mod 1 paired project: "BattleShip"
 
 
-# DTR
+## DTR
 Project: 
 
 Group Member Names:
