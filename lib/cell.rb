@@ -4,20 +4,19 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @status = "empty"
+    @status = nil
   end
 
   def ship
 
   end
 
-# might want to change this later. make sure it evalues to boolean
   def empty?
-    status == "empty"
+    status == nil
   end
 
-  def place_ship(ship)
-
-  end
+  # def place_ship(ship)
+  #   @status = ship
+  # end
 
 end
