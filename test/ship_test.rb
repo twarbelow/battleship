@@ -20,25 +20,21 @@ class Shiptest < Minitest::Test
     assert_equal 3, @cruiser.length
   end
 
-  # def test_it_has_health
-  #
-  #
-  #   assert_equal 3, @cruiser.health
-  # end
-  #
-  # def test_it_is_not_sunk_to_start
-  #
-  #
-  #   assert_equal false, @cruiser.sunk?
-  # end
-  #
+  def test_it_has_health
+    assert_equal 3, @cruiser.health
+  end
+
+  def test_it_is_not_sunk_to_start
+    assert_equal false, @cruiser.sunk?
+  end
+  # 
   # def test_it_gets_hit
   #   ship.hit
   #
   #   assert_equal false, ship.sunk?
   #   assert_equal 2, ship.health
   # end
-  #
+
   # def test_ship_gets_sunk
   #
   #
