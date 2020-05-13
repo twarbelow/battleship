@@ -39,9 +39,9 @@ class BoardTest < Minitest::Test
       @submarine = Ship.new("Submarine", 2)
     end
 
-    def test_number_of_placement_coordinates_equals_ship_length
-      assert_equal false, @board.valid_placement?(cruiser, ["A1", "A2"])
-      assert_equal false, @board.valid_placement?(submarine, ["A2", "A3", "A4"])
+    def test_length_equal_to_placement_count
+      assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
+      assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
     end
   end
 
