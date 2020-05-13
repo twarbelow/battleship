@@ -3,8 +3,8 @@ class Cell
               :ship,
               :empty,
               :false,
-              :spent
-              # :render
+              :spent,
+              :render
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -58,3 +58,8 @@ end
 # change argument in line 20 from ship to name_of_ship
   # to make line 22 more readable
 # add render to initialize and reader
+
+
+# state: some of our methods are directly dependent upon a set of conditions,
+  # logic exists in two places which means you can have 2 different versions
+  # witch means you can have bugs
