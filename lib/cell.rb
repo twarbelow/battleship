@@ -47,7 +47,3 @@ class Cell
     render
   end
 end
-
-# state: some of our methods are directly dependent upon a set of conditions,
-  # logic exists in two places which means you can have 2 different versions
-  # which means you can have bugs
