@@ -14,13 +14,8 @@ class Cell
     @render = "."
   end
 
-# Additionally, we will include an optional boolean argument to
-# indicate if we want to reveal a ship in the cell even if it has
-# not been fired upon. This should render a cell that has not been
-# fired upon and contains a ship as an “S”. This will be useful for
-# showing the user where they placed their ships and for debugging.
-  def render(thing = false)
-    if thing == true
+  def render(ship_place = false)
+    if ship_place == true
       @render = "S"
     elsif spent == false
       @render = "."
@@ -28,7 +23,7 @@ class Cell
       @render = "M"
     elsif @ship.sunk? != true
       @render = "H"
-    elsif  @ship.sunk? == true
+    elsif @ship.sunk? == true
       @render = "X"
     end
   end
