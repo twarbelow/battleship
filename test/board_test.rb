@@ -23,10 +23,10 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_has_valid_coordinates?
-    assert_equal true, @board.valid_coordinates("A1")
-    assert_equal true, @board.valid_coordinates("D4")
-    assert_equal false, @board.valid_coordinates("A5")
-    assert_equal false, @board.valid_coordinates("E1")
-    assert_equal false, @board.valid_coordinates("A22")
+    assert_equal true, @board.valid_coordinates?("A1")
+    assert_equal true, @board.valid_coordinates?("D4")
+    assert_equal false, @board.valid_coordinates?("A5")
+    assert_equal false, @board.valid_coordinates?("E1")
+    assert_equal false, @board.valid_coordinates?("A22")
   end
 end
