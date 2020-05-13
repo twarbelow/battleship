@@ -19,8 +19,9 @@ class BoardTest < Minitest::Test
 
   def test_it_has_cells
     assert_equal 16 , @board.cells.count
-    assert_instance_of Cell, @board.cells[:A1].value.class.name
+    assert_instance_of Cell, @board.cells[:A1]
   end
+
   # def test_it_has_valid_coordinates?
   #   assert_equal , @board.cells
   # end
