@@ -4,14 +4,27 @@ class Cell
               :empty,
               :false,
               :spent
+              # :render
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
     @empty = true
     @spent = false
+    @render = "."
   end
 
+  def render
+    if spent == false
+      @render
+    elsif ship == nil
+      @render = "M"
+    elsif @ship.sunk? != true
+      @render = "H"
+    elsif  @ship.sunk? == true
+      @render = "X"
+    end
+  end
 
   def empty?
     @empty
@@ -28,12 +41,20 @@ class Cell
 
   def fire_upon
     @spent = true
-    ship.hit
+    ship.hit unless @ship.nil?
+    # means this stuff
+    # if @ship != nil
+    #   ship.hit
+    # end
+    render
   end
 
 end
 
+# what I worked
 # changed cell_status to empty
 # create fired_upon?
 # create fire_upon
-# change argument in line 20 from ship to name_of_ship to make line 22 more readable 
+# change argument in line 20 from ship to name_of_ship
+  # to make line 22 more readable
+# add render to initialize and reader
