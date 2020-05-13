@@ -24,8 +24,8 @@ class Board
     }
   end
 
-  def valid_coordinate?(cell)
-
+  def valid_coordinates?(cell)
+    @cells.key?(cell.to_sym)
   end
 
   def valid_placement?
@@ -36,7 +36,7 @@ class Board
   # range = "A".."D"
   # range.to_a
   # ["A", "B", "C", "D"]
-
+    # this won't work if we get to iteration 4
 
 #
 
