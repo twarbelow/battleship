@@ -22,41 +22,17 @@ class Board
               D3: Cell.new("D3"),
               D4: Cell.new("D4")
     }
+      # will need to refactor away from hardcoding cells if we make it to iteration 4
   end
 
   def valid_coordinates?(cell)
     @cells.key?(cell.to_sym)
   end
 
-  def valid_placement?
-
+  def valid_placement?(type, placement)
+    type.length == placement.count
   end
 
-  # will need to use class Range for testing coordinates
-  # range = "A".."D"
-  # range.to_a
-  # ["A", "B", "C", "D"]
-    # this won't work if we get to iteration 4
-
-#
 
 
-# cells = {
-#         B1: ".",
-#         A2: ".",
-#         A3: ".",
-#         A4: ".",
-#         B1: ".",
-#         B2: ".",
-#         B3: ".",
-#         B4: ".",
-#         C1: ".",
-#         C2: ".",
-#         C3: ".",
-#         C4: ".",
-#         D1: ".",
-#         D2: ".",
-#         D3: ".",
-#         D4: "."
-# }
 end
