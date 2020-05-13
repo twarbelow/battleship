@@ -70,11 +70,7 @@ class CellTest < Minitest::Test
       @cell_2.place_ship(@cruiser)
       assert_equal ".", @cell_2.render
 
-    # I don't understand what the following pattern is asking for
-
-    # # Indicate that we want to show a ship with the optional argument
-    # pry(main)> cell_2.render(true)
-    # # => "S"
+      assert_equal "S", @cell_2.render(true)
 
       @cell_2.fire_upon
       assert_equal "H", @cell_2.render
@@ -87,9 +83,3 @@ class CellTest < Minitest::Test
     end
   end
 end
-
-# what I worked on
-# nest tests so there is a basic test set and a render test set with different setups
-# setup render test
-# setup shipless render test
-# setup with ship render test
