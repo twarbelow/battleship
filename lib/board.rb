@@ -32,7 +32,26 @@ class Board
   def valid_placement?(type, placement)
     type.length == placement.count
   end
+    # if we have to use the same method, how do you filter for
+    # new results? put an || at the end of the statement and
+    # continue on the next line?
+
+    # using each_cons is the answer to the consecutive question
+    # but i'm not sure of its syntax.
+    # @cells.each_cons(3) {|x| p x } returns each cell which
+    # could be part of 3 consecutive i.e. quite a few of them
+
+    # looks like using the Range class might help with getting
+    # ship placements to be valid
 
 
+# end
 
+  def render(ship_place = false)
+    puts " 1 2 3 4 \n" +
+    "A #{cells[:A1].render(ship_place)} #{cells[:A2].render(ship_place)} #{cells[:A3].render(ship_place)} #{cells[:A4].render(ship_place)} \n" +
+    "B #{cells[:B1].render(ship_place)} #{cells[:B2].render(ship_place)} #{cells[:B3].render(ship_place)} #{cells[:B4].render(ship_place)} \n" +
+    "A #{cells[:C1].render(ship_place)} #{cells[:C2].render(ship_place)} #{cells[:C3].render(ship_place)} #{cells[:C4].render(ship_place)} \n" +
+    "A #{cells[:D1].render(ship_place)} #{cells[:D2].render(ship_place)} #{cells[:D3].render(ship_place)} #{cells[:D4].render(ship_place)} \n"
+  end
 end
