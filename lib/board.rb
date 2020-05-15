@@ -45,19 +45,17 @@ class Board
     # consecutive_options.any? do |array|
     #   array.include?(placement)
 
-      count = 0
-      while count < placement.length
-        y = count + 1
-        while y < placement.length
-          if placement[i] + placement[y] == 0
-            return true
-          end
-          y += 1
-        end
-        i += 1
-      return false
+    count = 0
+    while count < placement.length
+      if placement[count + 1] - placement[count] == 1
+      else
+        return false
       end
+      count += 1
     end
+  end
+end
+
   # lets say we are just dealing with one array how do we evaluate its elements against each other?
   #   maybe we don't need to evaluate it against another array of consecutive options.
   #   compare first one to second one
@@ -115,12 +113,12 @@ class Board
     # ship placements to be valid
 
 
-end
 
-  def render(ship_place = false)
-    puts " 1 2 3 4 \n" +
-    "A #{cells[:A1].render(ship_place)} #{cells[:A2].render(ship_place)} #{cells[:A3].render(ship_place)} #{cells[:A4].render(ship_place)} \n" +
-    "B #{cells[:B1].render(ship_place)} #{cells[:B2].render(ship_place)} #{cells[:B3].render(ship_place)} #{cells[:B4].render(ship_place)} \n" +
-    "A #{cells[:C1].render(ship_place)} #{cells[:C2].render(ship_place)} #{cells[:C3].render(ship_place)} #{cells[:C4].render(ship_place)} \n" +
-    "A #{cells[:D1].render(ship_place)} #{cells[:D2].render(ship_place)} #{cells[:D3].render(ship_place)} #{cells[:D4].render(ship_place)} \n"
-  end
+
+  # def render(ship_place = false)
+  #   puts " 1 2 3 4 \n" +
+  #   "A #{cells[:A1].render(ship_place)} #{cells[:A2].render(ship_place)} #{cells[:A3].render(ship_place)} #{cells[:A4].render(ship_place)} \n" +
+  #   "B #{cells[:B1].render(ship_place)} #{cells[:B2].render(ship_place)} #{cells[:B3].render(ship_place)} #{cells[:B4].render(ship_place)} \n" +
+  #   "A #{cells[:C1].render(ship_place)} #{cells[:C2].render(ship_place)} #{cells[:C3].render(ship_place)} #{cells[:C4].render(ship_place)} \n" +
+  #   "A #{cells[:D1].render(ship_place)} #{cells[:D2].render(ship_place)} #{cells[:D3].render(ship_place)} #{cells[:D4].render(ship_place)} \n"
+  # end
