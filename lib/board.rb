@@ -30,28 +30,26 @@ class Board
   end
 
   def valid_placement?(type, placement)
-    letters = placement.map do |element|
-      element[0].ord
-    end
-    numbers = placement.map do |element|
-      element[-1]
-    end
+    letters = placement.map { |element| element[0].ord }
+    numbers = placement.map { |element| element[-1].to_i }
 
-    letters.compare
-    numbers.compare
-    
-
-    type.length == placement.count && somethinghere
+    determine_relationship(letters)
+    determine_relationship(numbers)
+    type.length == placement.count && ((determine_relationship(letters) != determine_relationship(numbers)) || (determine_relationship(letters) != determine_relationship(numbers)))
   end
 
-  def compare
+  def determine_relationship(array)
     count = 0
     while count < array.length
       if array[count + 1] - array[count] == 1
+        count += 1
+        return "sequential"
+      elsif array[count + 1] - array[count] == 0
+        count += 1
+        return "same"
       else
         return false
       end
-      count += 1
     end
   end
 end
