@@ -30,24 +30,24 @@ class Board
   end
 
   def valid_placement?(type, placement)
-    consecutive_options = [
-      ["A1", "A2", "A3", "A4"],
-      ["B1", "B2", "B3", "B4"],
-      ["C1", "C2", "C3", "C4"],
-      ["D1", "D2", "D3", "D4"],
-      ["A1", "B1", "C1", "D1"],
-      ["A2", "B2", "C2", "D2"],
-      ["A3", "B3", "C3", "D3"],
-      ["A4", "B4", "C4", "D4"]
-    ]
+    letters = placement.map do |element|
+      element[0].ord
+    end
+    numbers = placement.map do |element|
+      element[-1]
+    end
 
-    type.length == placement.count
-    # consecutive_options.any? do |array|
-    #   array.include?(placement)
+    letters.compare
+    numbers.compare
+    
 
+    type.length == placement.count && somethinghere
+  end
+
+  def compare
     count = 0
-    while count < placement.length
-      if placement[count + 1] - placement[count] == 1
+    while count < array.length
+      if array[count + 1] - array[count] == 1
       else
         return false
       end
@@ -63,7 +63,6 @@ end
   #       if and only if one of the matches return true then:
   #         compare second element to third element, checking the character that matched in the first comparison and making sure it also matches in the second comparison
   #
-  #     USE .ord HOLY BALLS
   #
   #
   #
