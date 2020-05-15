@@ -33,9 +33,19 @@ class Board
     letters = placement.map { |element| element[0].ord }
     numbers = placement.map { |element| element[-1].to_i }
 
-    determine_relationship(letters)
+    sequential_letters = determine_relationship(letters) == :sequential
+    same_letters = determine_relationship(letters) == :same
+    sequential_numbers = determine_relationship(letters) == :sequential
+    same_numbers = determine_relationship(letters) == :same
     determine_relationship(numbers)
-    type.length == placement.count && ((determine_relationship(letters) != determine_relationship(numbers)) || (determine_relationship(letters) != determine_relationship(numbers)))
+
+    return false if type.length != placement.count
+    return true if sequential_letters && same_numbers
+    return true if same_letters && sequential_numbers
+    return false
+    #different way of doing the loooooong logic comparison I had in previous commit
+
+
   end
 
   def determine_relationship(array)
@@ -43,17 +53,17 @@ class Board
     while count < array.length
       if array[count + 1] - array[count] == 1
         count += 1
-        return "sequential"
+        return :sequential
       elsif array[count + 1] - array[count] == 0
         count += 1
-        return "same"
+        return :same
       else
-        return false
+        return nil
       end
     end
   end
 end
-
+  # break returns nil
   # lets say we are just dealing with one array how do we evaluate its elements against each other?
   #   maybe we don't need to evaluate it against another array of consecutive options.
   #   compare first one to second one
