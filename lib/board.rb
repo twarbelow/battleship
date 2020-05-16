@@ -30,44 +30,29 @@ class Board
   end
 
   def valid_placement?(type, placement)
-    letters = placement.map { |element| element[0].ord }
-    numbers = placement.map { |element| element[-1].to_i }
-    sequential_letters = determine_relationship(letters) == :sequential
-    sequential_numbers = determine_relationship(numbers) == :sequential
-    same_letters = determine_relationship(letters) == :same
-    same_numbers = determine_relationship(numbers) == :same
+    letters = placement.map { |coordinate| coordinate[0].ord }
+    numbers = placement.map { |coordinate| coordinate[-1].to_i }
 
     if type.length != placement.count
       return false
     else
-      return true if sequential_letters && same_numbers
-      return true if same_letters && sequential_numbers
+      return true if characters_are_sequential?(letters) && characters_are_same?(numbers)
+      return true if characters_are_same?(letters) && characters_are_sequential?(numbers)
       return false
     end
   end
 
-  def determine_relationship(array)
-    sequential = 1
-    same = 1
+  def characters_are_sequential?(array)
+    array.map.each_with_index do |number, index|
+      next if index == 0
+      number - array[index - 1] == 1
+    end.compact.all? { |number| number == true}
+  end
 
-    count = 1
-    while count < array.length
-      if array[count] - array[count - 1] == 1
-        count += 1
-        sequential += 1
-      elsif array[count] - array[count - 1] == 0
-        count += 1
-        same += 1
-      else
-        count += 1
-      end
-    end
-    if sequential == array.length
-      :sequential
-    elsif same == array.length
-      :same
-    else
-      false
-    end
+  def characters_are_same?(array)
+    array.map.each_with_index do |number, index|
+      next if index == 0
+      number - array[index - 1] == 0
+    end.compact.all? { |number| number == true}
   end
 end
