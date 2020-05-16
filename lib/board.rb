@@ -39,7 +39,7 @@ class Board
 
     if type.length != placement.count
       return false
-    elsif type.length == placement.count
+    else
       return true if sequential_letters && same_numbers
       return true if same_letters && sequential_numbers
       return false
@@ -48,9 +48,7 @@ class Board
 
   def determine_relationship(array)
     sequential = 1
-    seq_standard = array.length
     same = 1
-    same_standard = array.length
 
     count = 1
     while count < array.length
@@ -64,9 +62,9 @@ class Board
         count += 1
       end
     end
-    if sequential == seq_standard
+    if sequential == array.length
       :sequential
-    elsif same == same_standard
+    elsif same == array.length
       :same
     else
       false
