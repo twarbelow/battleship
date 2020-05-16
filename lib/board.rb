@@ -31,7 +31,11 @@ class Board
   end
 
   def valid_placement?(type, placement)
-    type.length == placement.count
+    type.length == placement.count && placement.consecutive_cells?
+  end
+
+  def consecutive_cells?
+    # define this method
   end
     # if we have to use the same method, how do you filter for
     # new results? put an || at the end of the statement and
