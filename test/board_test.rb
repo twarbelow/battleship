@@ -44,6 +44,22 @@ class BoardTest < Minitest::Test
       assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
     end
 
+    def test_characters_are_sequential?
+      assert_equal false, @board.characters_are_sequential?(["A".ord, "A".ord, "A".ord])
+      assert_equal false, @board.characters_are_sequential?(["A".ord, "B".ord, "A".ord])
+      assert_equal false, @board.characters_are_sequential?([1, 3, 4])
+      assert_equal false, @board.characters_are_sequential?([2, 2, 2])
+      assert_equal true, @board.characters_are_sequential?(["B".ord, "C".ord, "D".ord])
+      assert_equal true, @board.characters_are_sequential?([2, 3, 4])
+    end
+
+    def test_characters_are_same?
+      assert_equal false, @board.characters_are_same?([1, 2, 3])
+      assert_equal false, @board.characters_are_same?(["A".ord, "B".ord, "A".ord])
+      assert_equal true, @board.characters_are_same?(["A".ord, "A".ord, "A".ord])
+      assert_equal true, @board.characters_are_same?([2, 2, 2])
+    end
+
     def test_cells_must_be_consecutive
       assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
       assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
@@ -63,6 +79,7 @@ class BoardTest < Minitest::Test
     end
 
     def test_ships_can_be_placed
+      skip
       board.place(cruiser, ["A1", "A2", "A3"])
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
@@ -75,6 +92,7 @@ class BoardTest < Minitest::Test
     end
 
     def test_no_overlapping_ships
+      skip
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["A1", "B1"])
       assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
