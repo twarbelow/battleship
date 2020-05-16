@@ -44,21 +44,12 @@ class BoardTest < Minitest::Test
       assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
     end
 
-
-    # def test_it_can_determine_consecutive_cells?
-      # true_array = [C2, C3, C4]
-      # false_array = [D1, C3, A2]
-      # assert_equal true, cells.consecutive_cells?["C2", "C3", "C4"]
-      # assert_equal false, cells.consecutive_cells?["D1", "C3", "A2"]
-    # end
-
     def test_cells_must_be_consecutive
       assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
       assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
       assert_equal false, @board.valid_placement?(@cruiser, ["A3", "A2", "A1"])
       assert_equal false, @board.valid_placement?(@submarine, ["C1", "B1"])
-
-      assert_equal true, @board.valid_placement?(@submarine, ["B1", "C1", "D1"])
+      assert_equal true, @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
     end
   end
 

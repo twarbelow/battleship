@@ -32,100 +32,44 @@ class Board
   def valid_placement?(type, placement)
     letters = placement.map { |element| element[0].ord }
     numbers = placement.map { |element| element[-1].to_i }
-
     sequential_letters = determine_relationship(letters) == :sequential
+    sequential_numbers = determine_relationship(numbers) == :sequential
     same_letters = determine_relationship(letters) == :same
-    sequential_numbers = determine_relationship(letters) == :sequential
-    same_numbers = determine_relationship(letters) == :same
-    determine_relationship(numbers)
+    same_numbers = determine_relationship(numbers) == :same
 
-    return false if type.length != placement.count
-    return true if sequential_letters && same_numbers
-    return true if same_letters && sequential_numbers
-    return false
-    #different way of doing the loooooong logic comparison I had in previous commit
-
-
+    if type.length != placement.count
+      return false
+    elsif type.length == placement.count
+      return true if sequential_letters && same_numbers
+      return true if same_letters && sequential_numbers
+      return false
+    end
   end
 
   def determine_relationship(array)
-    count = 0
+    sequential = 1
+    seq_standard = array.length
+    same = 1
+    same_standard = array.length
+
+    count = 1
     while count < array.length
-      if array[count + 1] - array[count] == 1
+      if array[count] - array[count - 1] == 1
         count += 1
-        return :sequential
-      elsif array[count + 1] - array[count] == 0
+        sequential += 1
+      elsif array[count] - array[count - 1] == 0
         count += 1
-        return :same
+        same += 1
       else
-        return nil
+        count += 1
       end
+    end
+    if sequential == seq_standard
+      :sequential
+    elsif same == same_standard
+      :same
+    else
+      false
     end
   end
 end
-  # break returns nil
-  # lets say we are just dealing with one array how do we evaluate its elements against each other?
-  #   maybe we don't need to evaluate it against another array of consecutive options.
-  #   compare first one to second one
-  #     find out if first character matches first character or second character matches second character
-  #       if and only if one of the matches return true then:
-  #         compare second element to third element, checking the character that matched in the first comparison and making sure it also matches in the second comparison
-  #
-  #
-  #
-  #
-  #   array = ["A1", "B1", "C1", "D1"]
-  #
-
-
-    # need to compare elements in order
-
-    # Good plcaement is:
-    # • All the same letter, and sequential numbers
-    # • Sequential letters, and the same numbers
-    #
-    # becomes
-    #
-    # isLettersSame = lettersarray.uniq.length == 1
-    # isLettersSequential = lettersarray enumerable do .ord
-    # isNumbersSame = ... numbersarray.uniq.length == 1
-    # isNumbersSequential = ...
-    #
-    # return true if isLettersSame && isNumbersSequential
-    # return true if isLettersSequential && isNumbersSame
-    # return false
-
-    # take each element find out if letters are same (first character is same), or if second character is same
-    #  if character 1 is constant
-      # then is charact 2 consecutive
-    # else is character 1 consequtive
-
-
-
-
-
-
-
-  # end
-    # if we have to use the same method, how do you filter for
-    # new results? put an || at the end of the statement and
-    # continue on the next line?
-    #
-    # using each_cons is the answer to the consecutive question
-    # but i'm not sure of its syntax.
-    # @cells.each_cons(3) {|x| p x } returns each cell which
-    # could be part of 3 consecutive i.e. quite a few of them
-
-    # looks like using the Range class might help with getting
-    # ship placements to be valid
-
-
-
-
-  # def render(ship_place = false)
-  #   puts " 1 2 3 4 \n" +
-  #   "A #{cells[:A1].render(ship_place)} #{cells[:A2].render(ship_place)} #{cells[:A3].render(ship_place)} #{cells[:A4].render(ship_place)} \n" +
-  #   "B #{cells[:B1].render(ship_place)} #{cells[:B2].render(ship_place)} #{cells[:B3].render(ship_place)} #{cells[:B4].render(ship_place)} \n" +
-  #   "A #{cells[:C1].render(ship_place)} #{cells[:C2].render(ship_place)} #{cells[:C3].render(ship_place)} #{cells[:C4].render(ship_place)} \n" +
-  #   "A #{cells[:D1].render(ship_place)} #{cells[:D2].render(ship_place)} #{cells[:D3].render(ship_place)} #{cells[:D4].render(ship_place)} \n"
-  # end
