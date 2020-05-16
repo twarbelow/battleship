@@ -31,6 +31,8 @@ class Board
   end
 
   def valid_placement?(type, placement)
+    placement_available?(placement)
+
     letters = placement.map { |coordinate| coordinate[0].ord }
     numbers = placement.map { |coordinate| coordinate[-1].to_i }
 
@@ -55,5 +57,23 @@ class Board
       next if index == 0
       number - array[index - 1] == 0
     end.compact.all? { |number| number == true}
+  end
+
+  def place(type, placement)
+    valid_placement?(type, placement)
+
+    # will need to iterate through the given coordinates with:
+    #coordinate.place_ship(type)
+    #coordinate_element.to_sym?
+      # def place_ship(name_of_ship)
+      #   @empty = false
+      #   @ship = name_of_ship
+      # end
+  end
+
+  def placement_available?(placement)
+    placement.map do |coordinate|
+      cells[coordinate.to_sym].empty == true
+    end.compact.all? { |coordinate| coordinate == true}
   end
 end
