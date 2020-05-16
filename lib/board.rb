@@ -31,32 +31,44 @@ class Board
   end
 
   def valid_placement?(type, placement)
-    type.length == placement.count && placement.consecutive_cells?
+    letters = placement.map { |element| element[0].ord }
+    numbers = placement.map { |element| element[-1].to_i }
+    sequential_letters = determine_relationship(letters) == :sequential
+    sequential_numbers = determine_relationship(numbers) == :sequential
+    same_letters = determine_relationship(letters) == :same
+    same_numbers = determine_relationship(numbers) == :same
+
+    if type.length != placement.count
+      return false
+    else
+      return true if sequential_letters && same_numbers
+      return true if same_letters && sequential_numbers
+      return false
+    end
   end
 
-  def consecutive_cells?
-    # define this method
-  end
-    # if we have to use the same method, how do you filter for
-    # new results? put an || at the end of the statement and
-    # continue on the next line?
+  def determine_relationship(array)
+    sequential = 1
+    same = 1
 
-    # using each_cons is the answer to the consecutive question
-    # but i'm not sure of its syntax.
-    # @cells.each_cons(3) {|x| p x } returns each cell which
-    # could be part of 3 consecutive i.e. quite a few of them
-
-    # looks like using the Range class might help with getting
-    # ship placements to be valid
-
-
-# end
-
-  def render(ship_place = false)
-    puts " 1 2 3 4 \n" +
-    "A #{cells[:A1].render(ship_place)} #{cells[:A2].render(ship_place)} #{cells[:A3].render(ship_place)} #{cells[:A4].render(ship_place)} \n" +
-    "B #{cells[:B1].render(ship_place)} #{cells[:B2].render(ship_place)} #{cells[:B3].render(ship_place)} #{cells[:B4].render(ship_place)} \n" +
-    "A #{cells[:C1].render(ship_place)} #{cells[:C2].render(ship_place)} #{cells[:C3].render(ship_place)} #{cells[:C4].render(ship_place)} \n" +
-    "A #{cells[:D1].render(ship_place)} #{cells[:D2].render(ship_place)} #{cells[:D3].render(ship_place)} #{cells[:D4].render(ship_place)} \n"
+    count = 1
+    while count < array.length
+      if array[count] - array[count - 1] == 1
+        count += 1
+        sequential += 1
+      elsif array[count] - array[count - 1] == 0
+        count += 1
+        same += 1
+      else
+        count += 1
+      end
+    end
+    if sequential == array.length
+      :sequential
+    elsif same == array.length
+      :same
+    else
+      false
+    end
   end
 end
