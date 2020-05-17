@@ -62,13 +62,15 @@ class Board
   def place(type, placement)
     valid_placement?(type, placement)
 
+    placement.each do |coordinate|
+      cells[coordinate.to_sym].place_ship(type)
+    end
+
     # will need to iterate through the given coordinates with:
     #coordinate.place_ship(type)
-    #coordinate_element.to_sym?
-      # def place_ship(name_of_ship)
-      #   @empty = false
-      #   @ship = name_of_ship
-      # end
+    #coordinate_element.to_sym
+      # access correct cell then:
+        # cell.place_ship(type)
   end
 
   def placement_available?(placement)

@@ -80,17 +80,19 @@ class BoardTest < Minitest::Test
   end
 
   class ShipPlacementTests < BoardTest
-    @board = Board.new
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
+    def setup
+      @board = Board.new
+      @cruiser = Ship.new("Cruiser", 3)
+      @submarine = Ship.new("Submarine", 2)
+    end
 
     def test_ships_can_be_placed
-      skip
-      board.place(cruiser, ["A1", "A2", "A3"])
-      cell_1 = board.cells["A1"]
-      cell_2 = board.cells["A2"]
-      cell_3 = board.cells["A3"]
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+      cell_1 = @board.cells["A1"]
+      cell_2 = @board.cells["A2"]
+      cell_3 = @board.cells["A3"]
 
+      # ??? board.cells[coordinate].ship
       assert_equal Ship, cell_1.ship
       assert_equal Ship, cell_2.ship
       assert_equal Ship, cell_3.ship
@@ -99,9 +101,9 @@ class BoardTest < Minitest::Test
 
     def test_no_overlapping_ships
       skip
-      board.place(cruiser, ["A1", "A2", "A3"])
-      board.place(submarine, ["A1", "B1"])
-      assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+      @board.place(@submarine, ["A1", "B1"])
+      assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
     end
   end
 end
