@@ -63,7 +63,8 @@ class BoardTest < Minitest::Test
     end
 
     def test_ships_can_be_placed
-      board.place(cruiser, ["A1", "A2", "A3"])
+      skip
+      @board.place(@cruiser, ["A1", "A2", "A3"])
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
@@ -75,9 +76,20 @@ class BoardTest < Minitest::Test
     end
 
     def test_no_overlapping_ships
-      board.place(cruiser, ["A1", "A2", "A3"])
-      board.place(submarine, ["A1", "B1"])
-      assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
+      skip
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+      @board.place(@submarine, ["A1", "B1"])
+      assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
+    end
+
+    def test_board_can_be_rendered
+      skip
+
+      assert_equal " 1 2 3 4 \nA . . . .\nB . . . .\nC . . . .\nD . . . .\n", board.render
+
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      assert_equal " 1 2 3 4 \nA S S S .\nB . . . .\nC . . . .\nD . . . .\n", board.render(true)
     end
   end
 end
