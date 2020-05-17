@@ -19,7 +19,7 @@ class BoardTest < Minitest::Test
 
     def test_it_has_cells
       assert_equal 16 , @board.cells.count
-      assert_instance_of Cell, @board.cells[:A1]
+      assert_instance_of Cell, @board.cells["A1"]
     end
 
     def test_it_has_valid_coordinates?
@@ -84,23 +84,30 @@ class BoardTest < Minitest::Test
       @board = Board.new
       @cruiser = Ship.new("Cruiser", 3)
       @submarine = Ship.new("Submarine", 2)
+      @cell_1 = @board.cells["A1"]
+      @cell_2 = @board.cells["A2"]
+      @cell_3 = @board.cells["A3"]
     end
 
     def test_ships_can_be_placed
       @board.place(@cruiser, ["A1", "A2", "A3"])
-      cell_1 = @board.cells["A1"]
-      cell_2 = @board.cells["A2"]
-      cell_3 = @board.cells["A3"]
 
-      # ??? board.cells[coordinate].ship
-      assert_equal Ship, cell_1.ship
-      assert_equal Ship, cell_2.ship
-      assert_equal Ship, cell_3.ship
-      assert_equal true, cell_3.ship == cell_2.ship
+
+      assert_instance_of Ship, @cell_1.ship
+      assert_instance_of Ship, @cell_2.ship
+      assert_instance_of Ship, @cell_3.ship
+      assert_equal @cell_3.ship, @cell_2.ship
+    end
+
+    def test_placement_is_available?
+      assert_equal true, @board.placement_available?(["A1", "A2", "A3"])
+
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      assert_equal false, @board.placement_available?(["A1", "B1"])
     end
 
     def test_no_overlapping_ships
-      skip
       @board.place(@cruiser, ["A1", "A2", "A3"])
       @board.place(@submarine, ["A1", "B1"])
       assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
