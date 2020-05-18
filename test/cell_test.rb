@@ -67,9 +67,9 @@ class CellTest < Minitest::Test
     end
 
     def test_cell_with_ship_renders_properly
-      @cell_2.place_ship(@cruiser)
       assert_equal ".", @cell_2.render
 
+      @cell_2.place_ship(@cruiser)
       assert_equal "S", @cell_2.render(true)
 
       @cell_2.fire_upon
