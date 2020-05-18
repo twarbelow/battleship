@@ -114,7 +114,6 @@ class BoardTest < Minitest::Test
     end
 
     def test_board_can_be_rendered
-      # skip
       expected = " 1 2 3 4 \nA . . . .\nB . . . .\nC . . . .\nD . . . .\n"
       expected_with_ship = " 1 2 3 4 \nA S S S .\nB . . . .\nC . . . .\nD . . . .\n"
 
