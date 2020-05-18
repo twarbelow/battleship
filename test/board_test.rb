@@ -114,13 +114,14 @@ class BoardTest < Minitest::Test
     end
 
     def test_board_can_be_rendered
-      # skip
+      expected = " 1 2 3 4 \nA . . . .\nB . . . .\nC . . . .\nD . . . .\n"
+      expected_with_ship = " 1 2 3 4 \nA S S S .\nB . . . .\nC . . . .\nD . . . .\n"
 
-      assert_equal " 1 2 3 4 \nA . . . .\nB . . . .\nC . . . .\nD . . . .\n", @board.render
+      assert_equal expected, @board.render
 
       @board.place(@cruiser, ["A1", "A2", "A3"])
 
-      assert_equal " 1 2 3 4 \nA S S S .\nB . . . .\nC . . . .\nD . . . .\n", @board.render(true)
+      assert_equal expected_with_ship, @board.render(true)
     end
   end
 end

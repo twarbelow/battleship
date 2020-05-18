@@ -79,12 +79,11 @@ class Board
   end
 
   def render(ship_place = false)
-
     " 1 2 3 4 \n" +
-    "A #{@cells["A1"].render(ship_place)} #{@cells["A2"].render(ship_place)} #{@cells["A3"].render(ship_place)} #{@cells["A4"].render(ship_place)} \n" +
-    "B #{@cells["B1"].render(ship_place)} #{@cells["B2"].render(ship_place)} #{@cells["B3"].render(ship_place)} #{@cells["B4"].render(ship_place)} \n" +
-    "C #{@cells["C1"].render(ship_place)} #{@cells["C2"].render(ship_place)} #{@cells["C3"].render(ship_place)} #{@cells["C4"].render(ship_place)} \n" +
-    "D #{@cells["D1"].render(ship_place)} #{@cells["D2"].render(ship_place)} #{@cells["D3"].render(ship_place)} #{@cells["D4"].render(ship_place)} \n"
+    "A #{@cells["A1"].render(ship_place)} #{@cells["A2"].render(ship_place)} #{@cells["A3"].render(ship_place)} #{@cells["A4"].render(ship_place)}\n" +
+    "B #{@cells["B1"].render(ship_place)} #{@cells["B2"].render(ship_place)} #{@cells["B3"].render(ship_place)} #{@cells["B4"].render(ship_place)}\n" +
+    "C #{@cells["C1"].render(ship_place)} #{@cells["C2"].render(ship_place)} #{@cells["C3"].render(ship_place)} #{@cells["C4"].render(ship_place)}\n" +
+    "D #{@cells["D1"].render(ship_place)} #{@cells["D2"].render(ship_place)} #{@cells["D3"].render(ship_place)} #{@cells["D4"].render(ship_place)}\n"
   end
 
 end
