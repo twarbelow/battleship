@@ -6,4 +6,12 @@ require './lib/board'
 require "./lib/game"
 
 class GameTest < Minitest::Test
+  def setup
+    @game = Game.new
+  end
+
+  def test_it_has_main_menu
+    menu_text = "Welcome to BATTLESHIP\n" + "Enter p to play. Enter q to quit."
+    assert_equal menu_text, @game.main_menu
+  end
 end
