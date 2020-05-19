@@ -5,12 +5,12 @@ class Human
 
   def initialize
     @board = Board.new
-    @cruiser = Ship.newz("Cruiser", 3)
+    @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
   end
 
-  def cruiser_place
-    lopp do
+  def place_cruiser
+    loop do
       puts "Enter the squares for the cruiser (3 spaces):"
       input = gets.chomp
       cruiser_coords = input.split(" ")
@@ -22,7 +22,7 @@ class Human
     end
   end
 
-  def submarine_place
+  def place_submarine
     loop do
       puts "Enter the squares for the submarine (2 spaces):"
       input = gets.chomp
