@@ -11,8 +11,6 @@ class GameTest < Minitest::Test
     @game = Game.new
   end
 
-  def test_it_has_main_menu
-    expected = "Welcome to BATTLESHIP\n" "Enter p to play. Enter q to quit."
-    assert_equal expected, @game.main_menu
+  def test
   end
 end
