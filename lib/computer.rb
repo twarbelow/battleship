@@ -9,7 +9,7 @@ class Computer
     @submarine = Ship.new("Submarine", 2)
   end
 
-  def cruiser_place
+  def place_cruiser
     loop do
       cruiser_coords = []
       until cruiser_coords.length == cruiser.length do
@@ -23,7 +23,7 @@ class Computer
   end
 
 
-  def submarine_place
+  def place_submarine
     loop do
       submarine_coords = []
       until submarine_coords.length == submarine.length do
