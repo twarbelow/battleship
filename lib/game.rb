@@ -40,8 +40,8 @@ class Game
   end
 
   def main_menu
-    puts "Welcome to BATTLESHIP"
-    puts "Enter p to play. Enter q to quit."
+    p "Welcome to BATTLESHIP"
+    p "Enter p to play. Enter q to quit."
     input = gets.chomp.downcase
     invalid_input_count = 0
     until valid_input?(input)
@@ -56,7 +56,7 @@ class Game
       abort(response_options[input])
     else
       p response_options[input]
-    end 
+    end
   end
 
   def valid_input?(input)
@@ -86,11 +86,11 @@ class Game
       @computer_ship_count += turn.computer_ship_count
       @human_ship_count += turn.human_ship_count
       if computer_loses
-        puts "You won!"
+        p "You won!"
         turn.display_boards(computer, human)
       elsif human_loses
         turn.display_boards(computer, human)
-        puts "I won!"
+        p "I won!"
         break
       else
         next
