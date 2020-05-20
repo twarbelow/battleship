@@ -17,20 +17,20 @@ class Turn
     puts "==============COMPUTER BOARD=============="
     puts computer.board.render
     puts "==============PLAYER BOARD=============="
-    puts player.board.render(true)
+    puts human.board.render(true)
   end
 
-  def player_turn(player)
+  def player_turn(human)
     loop do
       p "Enter the coordinate for your shot."
-      player_input = gets.chomp
-      if computer.board.valid_coordinate?(player_input) == true
-        computer.board.cells[player_input].fire_upon
-        if computer.board.cells[player_input].render(true) == "M"
-          p "Your shot on #{player_input} was a miss."
-        elsif computer.board.cells[player_input].render(true) == "H"
-          p "Your shot on #{player_input} was a hit."
-        elsif computer.board.cells[player_input].render(true) == "X"
+      human_input = gets.chomp
+      if computer.board.valid_coordinate?(human_input) == true
+        computer.board.cells[human_input].fire_upon
+        if computer.board.cells[human_input].render(true) == "M"
+          p "Your shot on #{human_input} was a miss."
+        elsif computer.board.cells[human_input].render(true) == "H"
+          p "Your shot on #{human_input} was a hit."
+        elsif computer.board.cells[human_input].render(true) == "X"
           p "Your shot sunk my #{computer.board.cells.ship.name}!"
           @computer_ship_count += 1
         end
@@ -41,15 +41,15 @@ class Turn
 
 
     def computer_turn(computer)
-      computer_input = player.board.cells.keys.sample
-      if player.board.valid_coordinate?(computer_input) == true
-        player.board.cells[computer_input].fire_upon
-        if player.board.cells[computer_input].render(true) == "M"
+      computer_input = human.board.cells.keys.sample
+      if human.board.valid_coordinate?(computer_input) == true
+        human.board.cells[computer_input].fire_upon
+        if human.board.cells[computer_input].render(true) == "M"
           p "Computer shot on #{computer_input} was a miss."
-        elsif player.board.cells[computer_input].render(true) == "H"
+        elsif human.board.cells[computer_input].render(true) == "H"
           p "Computer shot on #{computer_input} was a hit."
-        elsif player.board.cells[computer_input].render(true) == "X"
-          p "Computer shot on #{computer_input} sunk your #{player.board.cells.ship.name}!"
+        elsif human.board.cells[computer_input].render(true) == "X"
+          p "Computer shot on #{computer_input} sunk your #{human.board.cells.ship.name}!"
           @human_ship_count += 1
         end
       end
