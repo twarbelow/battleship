@@ -22,16 +22,16 @@ class Turn
 
   def player_turn(player)
     loop do
-      puts "Enter the coordinate for your shot."
+      p "Enter the coordinate for your shot."
       player_input = gets.chomp
       if computer.board.valid_coordinate?(player_input) == true
         computer.board.cells[player_input].fire_upon
         if computer.board.cells[player_input].render(true) == "M"
-          puts "Your shot on #{player_input} was a miss."
+          p "Your shot on #{player_input} was a miss."
         elsif computer.board.cells[player_input].render(true) == "H"
-          puts "Your shot on #{player_input} was a hit."
+          p "Your shot on #{player_input} was a hit."
         elsif computer.board.cells[player_input].render(true) == "X"
-          puts "Your shot sunk my #{computer.board.cells.ship.name}!"
+          p "Your shot sunk my #{computer.board.cells.ship.name}!"
           @computer_ship_count += 1
         end
         break
@@ -45,11 +45,11 @@ class Turn
       if player.board.valid_coordinate?(computer_input) == true
         player.board.cells[computer_input].fire_upon
         if player.board.cells[computer_input].render(true) == "M"
-          puts "Computer shot on #{computer_input} was a miss."
+          p "Computer shot on #{computer_input} was a miss."
         elsif player.board.cells[computer_input].render(true) == "H"
-          puts "Computer shot on #{computer_input} was a hit."
+          p "Computer shot on #{computer_input} was a hit."
         elsif player.board.cells[computer_input].render(true) == "X"
-          puts "Computer shot on #{computer_input} sunk your #{player.board.cells.ship.name}!"
+          p "Computer shot on #{computer_input} sunk your #{player.board.cells.ship.name}!"
           @human_ship_count += 1
         end
       end
