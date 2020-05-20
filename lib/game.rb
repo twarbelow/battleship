@@ -1,81 +1,77 @@
-require '.lib/ship'
-require '.lib/cell'
-require '.lib/board'
-require '.lib/human'
-require '.lib/computer'
 
 class Game
+  attr_reader :human,
+              :computer
+
+  def initialize(human, computer)
+    @human = human
+    @computer = computer
+  end
 
   def start
+    main_menu
 
-    human = Human.new
-    computer = Computer.new
+    p "I have laid out my ships on the grid."
+    p "You now need to lay out your ships."
+    p "The Cruiser is three units long and the Submarine is two units long."
+    
+    p "  1 2 3 4"
+    p "A . . . ."
+    p "B . . . ."
+    p "C . . . ."
+    p "D . . . ."
+    # should all these puts be human.board.render ??
 
+    self.human_setup
+
+    self.computer_setup
+
+    play
+  end
+
+  def main_menu
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
-
     input = gets.chomp.downcase
-    if input == "p"
-      puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your ships."
-      puts "The Cruiser is three units long and the Submarine is two units long."
-      puts "  1 2 3 4"
-      puts "A . . . ."
-      puts "B . . . ."
-      puts "C . . . ."
-      puts "D . . . ."
-
-      human.place_cruiser
-      human.place.submarine
-
-      computer.place_cruiser
-      computer.place_submarine
-
-      turn(computer, human)
+    invalid_input_count = 0
+    until valid_input?(input)
+      if invalid_input_count > 4
+        abort "This isn't fun for me anymore. Goodbye!"
+      end
+      p "Invalid response. Please type either p or q."
+      invalid_input_count += 1
+      input = gets.chomp.downcase
     end
+    p response_options[input]
   end
 
-  def display_boards(computer, human)
-    puts "==============COMPUTER BOARD=============="
-    puts computer.board.render
-    puts "==============PLAYER BOARD=============="
-    puts player.board.render(true)
+  def valid_input?(input)
+    ["p", "q"].include?(input)
   end
 
-  def turn(computer, player)
-    16.times do
-      display_boards(computer, player)
+  def response_options
+    {"p" => "Ok! Time to set up our boards!", "q" => "Maybe next time! Goodbye."}
+  end
 
-      loop do
-        puts "Enter the coordinate for your shot."
-        player_input = gets.chomp
-        if computer.board.valid_coordinate?(player_input) == true
-          computer.board.cells[player_input].fire_upon
-          if computer.board.cells[player_input].render(true) == "M"
-            puts "Your shot on #{player_input} was a miss."
-          elsif computer.board.cells[player_input].render(true) == "H"
-            puts "Your shot on #{player_input} was a hit."
-          elsif computer.board.cells[player_input].render(true) == "X"
-            puts "Your shot sunk my #{computer.board.cells.ship.name}!"
-          end
-          break
-        end
-        puts "Please enter a valid coordinate."
-      end
+  def human_setup
+    human.place_cruiser
+    human.place.submarine
+  end
 
+  def computer_setup
+    computer.place_cruiser
+    computer.place_submarine
+  end
 
-
-      computer_input = player.board.cells.keys.sample
-      if player.board.valid_coordinate?(computer_input) == true
-        player.board.cells[computer_input].fire_upon
-        if player.board.cells[computer_input].render(true) == "M"
-          puts "Computer shot on #{computer_input} was a miss."
-        elsif player.board.cells[computer_input].render(true) == "H"
-          puts "Computer shot on #{computer_input} was a hit."
-        elsif player.board.cells[computer_input].render(true) == "X"
-          puts "Computer shot on #{computer_input} sunk your #{player.board.cells.ship.name}!"
-        end
-      end
-    end
+  def play
   end
 end
+
+# Optional To-Do:
+# could make printer class to handle all terminal output
+
+# would like to refactor so main_menu essentially reads:
+# greet_user
+# check_validity
+# p display_options[input]
+# not sure how to do this because of the input required..would have to store and reassign somewhere
