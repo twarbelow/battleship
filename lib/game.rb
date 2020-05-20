@@ -6,27 +6,37 @@ require './lib/computer'
 require './lib/turn'
 
 class Game
+  attr_reader :computer,
+              :human,
+              :computer_ship_count,
+              :human_ship_count
 
+  def initialize(computer, human)
+    @computer = computer
+    @human = human
+    @computer_ship_count = 0
+    @human_ship_count = 0
+  end
 
   def start
     main_menu
 
-    p "I have laid out my ships on the grid."
-    p "You now need to lay out your ships."
-    p "The Cruiser is three units long and the Submarine is two units long."
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your ships."
+    puts "The Cruiser is three units long and the Submarine is two units long."
 
-    p "  1 2 3 4"
-    p "A . . . ."
-    p "B . . . ."
-    p "C . . . ."
-    p "D . . . ."
+    puts "  1 2 3 4"
+    puts "A . . . ."
+    puts "B . . . ."
+    puts "C . . . ."
+    puts "D . . . ."
     # should all these puts be human.board.render ??
 
-    self.human_setup
+    human_setup
 
-    self.computer_setup
+    computer_setup
 
-    play
+    play(computer, human)
   end
 
   def main_menu
@@ -63,7 +73,7 @@ class Game
     computer.place_submarine
   end
 
-  def play
+  def play(computer, human)
     loop do
       turn = Turn.new(computer, human)
       turn.display_boards(computer, human)
