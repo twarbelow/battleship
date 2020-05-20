@@ -17,10 +17,10 @@ class GameTest < Minitest::Test
   end
 
   def test_it_has_main_menu
-    # # invalid response gets mock/stub
+    # @game.stubs(:gets).returns("boogie")
     # assert_equal "Invalid response. Please type either p or q.", @game.main_menu
-    # # q input gets mock/stub
-    # assert_equal "Goodbye", @game.main_menu
+    @game.stubs(:gets).returns("Q")
+    assert_equal "Maybe next time! Goodbye.", @game.main_menu
     @game.stubs(:gets).returns("P")
     assert_equal "Ok! Time to set up our boards!", @game.main_menu
   end
