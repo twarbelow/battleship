@@ -1,37 +1,50 @@
-require '.lib/ship'
-require '.lib/cell'
-require '.lib/board'
-require '.lib/human'
-require '.lib/computer'
-
 class Game
+  attr_reader :human,
+              :computer
+
+  def initialize(human, computer)
+    @human = human
+    @computer = computer
+  end
 
   def start
+    main_menu
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your ships."
+    puts "The Cruiser is three units long and the Submarine is two units long."
+    puts "  1 2 3 4"
+    puts "A . . . ."
+    puts "B . . . ."
+    puts "C . . . ."
+    puts "D . . . ."
+    # should all these puts be human.board.render ??
 
-    human = Human.new
-    computer = Computer.new
+    human.place_cruiser
+    human.place.submarine
 
+    computer.place_cruiser
+    computer.place_submarine
+
+    turn(computer, human)
+  end
+
+  def main_menu
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
+    # invalid_count = 0
 
-    input = gets.chomp.downcase
-    if input == "p"
-      puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your ships."
-      puts "The Cruiser is three units long and the Submarine is two units long."
-      puts "  1 2 3 4"
-      puts "A . . . ."
-      puts "B . . . ."
-      puts "C . . . ."
-      puts "D . . . ."
-
-      human.place_cruiser
-      human.place.submarine
-
-      computer.place_cruiser
-      computer.place_submarine
-
-      turn(computer, human)
+    if gets.chomp.downcase == "p"
+      p "Ok! Time to set up our boards!"
+    elsif gets.chomp.downcase == "q"
+      p "Maybe next time! Goodbye."
+    # else
+    #   if invalid_count < 5
+    #     p "Invalid response. Please type either p or q."
+    #     invalid_count += 1
+    #     self.main_menu
+    #   else
+    #     abort ("This isn't fun for me anymore. Goodbye")
+    #   end
     end
   end
 

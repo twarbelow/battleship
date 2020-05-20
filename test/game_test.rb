@@ -1,16 +1,27 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require './lib/game'
+require './lib/human'
+require './lib/computer'
 
 class GameTest < Minitest::Test
 
   def setup
-    @game = Game.new
+    @human = Human.new
+    @computer = Computer.new
+    @game = Game.new(@human, @computer)
   end
 
-  def test
+  def test_it_has_main_menu
+    # @game.stubs(:gets).returns("boogie")
+    # assert_equal "Invalid response. Please type either p or q.", @game.main_menu
+    @game.stubs(:gets).returns("Q")
+    assert_equal "Maybe next time! Goodbye.", @game.main_menu
+    @game.stubs(:gets).returns("P")
+    assert_equal "Ok! Time to set up our boards!", @game.main_menu
   end
 end
