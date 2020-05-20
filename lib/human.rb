@@ -11,10 +11,10 @@ class Human
 
   def place_cruiser
     loop do
-      puts "Enter the squares for the cruiser (3 spaces):"
-      input = gets.chomp
-      cruiser_coords = input.split(" ")
+      puts "Enter the squares for the cruiser (3 spaces). Please do it in this format: B1, B2, B3."
+      cruiser_coords = gets.chomp.upcase.gsub(',', '').split
       if board.valid_placement?(cruiser, cruiser_coords) == true
+        require 'pry'; binding.pry
         @board.place(cruiser, cruiser_coords)
         break
       end
