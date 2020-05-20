@@ -1,3 +1,5 @@
+# could make printer class to handle all terminal output
+
 class Game
   attr_reader :human,
               :computer
@@ -29,9 +31,13 @@ class Game
   end
 
   def main_menu
+    # would like to refactor so main_menu essentially reads
+    # greet_user
+    # check_validity
+    # p display_options[input]
+    # not sure how to do this because of the input required..would have to store and reassign somewhere
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
-    # invalid_count = 0
     input = gets.chomp.downcase
     invalid_input_count = 0
     until valid_input?(input)
@@ -42,7 +48,7 @@ class Game
       invalid_input_count += 1
       input = gets.chomp.downcase
     end
-    puts response_options[input]
+    p response_options[input]
   end
 
   def valid_input?(input)
