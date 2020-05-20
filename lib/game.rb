@@ -63,7 +63,7 @@ class Game
 
   def human_setup
     human.place_cruiser
-    human.place.submarine
+    human.place_submarine
   end
 
   def computer_setup
