@@ -1,3 +1,9 @@
+require './lib/ship'
+require './lib/cell'
+require './lib/board'
+require './lib/human'
+require './lib/computer'
+require './lib/turn'
 
 class Game
 
@@ -58,6 +64,33 @@ class Game
   end
 
   def play
+    loop do
+      turn = Turn.new(computer, human)
+      turn.display_boards(computer, human)
+      turn.player_turn(human)
+      turn.computer_turn(computer)
+      @computer_ship_count += turn.computer_ship_count
+      @human_ship_count += turn.human_ship_count
+      if computer_loses
+        puts "You won!"
+        turn.display_boards(computer, human)
+      elsif human_loses
+        turn.display_boards(computer, human)
+        puts "I won!"
+        break
+      else
+        next
+      end
+    end
+    start
+  end
+
+  def computer_loses
+    computer_ship_count == 2
+  end
+
+  def human_loses
+    human_ship_count == 2
   end
 end
 
