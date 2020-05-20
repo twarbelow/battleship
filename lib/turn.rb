@@ -23,8 +23,8 @@ class Turn
   def player_turn(human)
     loop do
       p "Enter the coordinate for your shot."
-      human_input = gets.chomp
-      if computer.board.valid_coordinate?(human_input) == true
+      human_input = gets.chomp.upcase
+      if computer.board.valid_coordinates?(human_input) == true
         computer.board.cells[human_input].fire_upon
         if computer.board.cells[human_input].render(true) == "M"
           p "Your shot on #{human_input} was a miss."
