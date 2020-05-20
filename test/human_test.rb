@@ -28,22 +28,21 @@ class HumanTest < Minitest::Test
   end
 
   def test_human_can_place_cruiser
-    skip
     # needs stub for gets in place_cruiser
     @human.stubs(:gets).returns("a1, B1, C1")
-    assert_equal true, @board.place_cruiser
+    assert_equal true, @human.place_cruiser
     invalid_input = "Those are invalid coordinates. Please try again:"
     @human.stubs(:gets).returns("A1, B1, D1")
-    assert_equal invalid_input, @board.place_cruiser
+    assert_equal invalid_input, @human.place_cruiser
   end
 
   def test_human_can_place_submarine
     skip
     # needs stub for gets in place_submarine
 
-    assert_equal true, @board.place_submarine
+    assert_equal true, @human.place_submarine
     invalid_input = "Those are invalid coordinates. Please try again:"
-    assert_equal invalid_input, @board.place_submarine
+    assert_equal invalid_input, @human.place_submarine
   end
 
 
