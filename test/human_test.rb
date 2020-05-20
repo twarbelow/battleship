@@ -19,9 +19,16 @@ class HumanTest < Minitest::Test
     assert_instance_of Human, human
   end
 
+  def test_it_starts_with_a_board_and_ships
+    human = Human.new
 
+    assert_instance_of Board, human.board
+    assert_instance_of Ship, human.cruiser
+    assert_instance_of Ship, human.submarine
+  end
 
   def test_human_can_place_cruiser
+    skip
     # take user inputs using mocks and place a ship, multiple
     # inputs may be needed
     # needs stub for gets in place_cruiser
@@ -31,6 +38,7 @@ class HumanTest < Minitest::Test
   end
 
   def test_human_can_place_submarine
+    skip
     # needs stub for gets in place_cruiser
 
   end
