@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
@@ -20,7 +21,7 @@ class GameTest < Minitest::Test
     # assert_equal "Invalid response. Please type either p or q.", @game.main_menu
     # # q input gets mock/stub
     # assert_equal "Goodbye", @game.main_menu
-    @game.stub(:gets).returns("P")
+    @game.stubs(:gets).returns("P")
     assert_equal "Ok! Time to set up our boards!", @game.main_menu
   end
 end
