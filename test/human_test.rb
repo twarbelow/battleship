@@ -14,11 +14,8 @@ class HumanTest < Minitest::Test
     @submarine = Ship.new("Submarine", 2)
   end
   def test_it_exists
-    human = Human.new
-
-    assert_instance_of Human, human
+    assert_instance_of Human, @human
   end
-
 
 
   def test_human_can_place_cruiser

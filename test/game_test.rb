@@ -26,4 +26,16 @@ class GameTest < Minitest::Test
     @game.stubs(:gets).returns("P")
     assert_equal "Ok! Time to set up our boards!", @game.main_menu
   end
+
+  def test_it_has_human_setup
+    #need to stub out user input
+  end
+
+  def test_it_has_computer_setup
+    #could mock/stub out computer rand method
+  end
+
+  def test_it_can_play
+    #not sure yet.
+  end
 end

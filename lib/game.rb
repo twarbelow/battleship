@@ -1,4 +1,3 @@
-# could make printer class to handle all terminal output
 
 class Game
   attr_reader :human,
@@ -11,31 +10,26 @@ class Game
 
   def start
     main_menu
-    puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your ships."
-    puts "The Cruiser is three units long and the Submarine is two units long."
-    puts "  1 2 3 4"
-    puts "A . . . ."
-    puts "B . . . ."
-    puts "C . . . ."
-    puts "D . . . ."
+
+    p "I have laid out my ships on the grid."
+    p "You now need to lay out your ships."
+    p "The Cruiser is three units long and the Submarine is two units long."
+    
+    p "  1 2 3 4"
+    p "A . . . ."
+    p "B . . . ."
+    p "C . . . ."
+    p "D . . . ."
     # should all these puts be human.board.render ??
 
-    human.place_cruiser
-    human.place.submarine
+    self.human_setup
 
-    computer.place_cruiser
-    computer.place_submarine
+    self.computer_setup
 
-    turn(computer, human)
+    play
   end
 
   def main_menu
-    # would like to refactor so main_menu essentially reads
-    # greet_user
-    # check_validity
-    # p display_options[input]
-    # not sure how to do this because of the input required..would have to store and reassign somewhere
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
     input = gets.chomp.downcase
@@ -59,47 +53,25 @@ class Game
     {"p" => "Ok! Time to set up our boards!", "q" => "Maybe next time! Goodbye."}
   end
 
-  def display_boards(computer, human)
-    puts "==============COMPUTER BOARD=============="
-    puts computer.board.render
-    puts "==============PLAYER BOARD=============="
-    puts player.board.render(true)
+  def human_setup
+    human.place_cruiser
+    human.place.submarine
   end
 
-  def turn(computer, player)
-    16.times do
-      display_boards(computer, player)
+  def computer_setup
+    computer.place_cruiser
+    computer.place_submarine
+  end
 
-      loop do
-        puts "Enter the coordinate for your shot."
-        player_input = gets.chomp
-        if computer.board.valid_coordinate?(player_input) == true
-          computer.board.cells[player_input].fire_upon
-          if computer.board.cells[player_input].render(true) == "M"
-            puts "Your shot on #{player_input} was a miss."
-          elsif computer.board.cells[player_input].render(true) == "H"
-            puts "Your shot on #{player_input} was a hit."
-          elsif computer.board.cells[player_input].render(true) == "X"
-            puts "Your shot sunk my #{computer.board.cells.ship.name}!"
-          end
-          break
-        end
-        puts "Please enter a valid coordinate."
-      end
-
-
-
-      computer_input = player.board.cells.keys.sample
-      if player.board.valid_coordinate?(computer_input) == true
-        player.board.cells[computer_input].fire_upon
-        if player.board.cells[computer_input].render(true) == "M"
-          puts "Computer shot on #{computer_input} was a miss."
-        elsif player.board.cells[computer_input].render(true) == "H"
-          puts "Computer shot on #{computer_input} was a hit."
-        elsif player.board.cells[computer_input].render(true) == "X"
-          puts "Computer shot on #{computer_input} sunk your #{player.board.cells.ship.name}!"
-        end
-      end
-    end
+  def play
   end
 end
+
+# Optional To-Do:
+# could make printer class to handle all terminal output
+
+# would like to refactor so main_menu essentially reads:
+# greet_user
+# check_validity
+# p display_options[input]
+# not sure how to do this because of the input required..would have to store and reassign somewhere
