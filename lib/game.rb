@@ -1,9 +1,3 @@
-require '.lib/ship'
-require '.lib/cell'
-require '.lib/board'
-require '.lib/human'
-require '.lib/computer'
-
 class Game
   attr_reader :human,
               :computer
