@@ -28,21 +28,16 @@ class HumanTest < Minitest::Test
   end
 
   def test_human_can_place_cruiser
-    # needs stub for gets in place_cruiser
+    # would like to be able to test invalid response but run into infinite loop
     @human.stubs(:gets).returns("a1, B1, C1")
-    assert_equal true, @human.place_cruiser
-    invalid_input = "Those are invalid coordinates. Please try again:"
-    @human.stubs(:gets).returns("A1, B1, D1")
-    assert_equal invalid_input, @human.place_cruiser
+    assert_equal "placed", @human.place_cruiser
   end
 
   def test_human_can_place_submarine
-    skip
-    # needs stub for gets in place_submarine
+    # would like to be able to test invalid response but run into infinite loop
+    @human.stubs(:gets).returns("d2, d3")
+    assert_equal "placed", @human.place_submarine
 
-    assert_equal true, @human.place_submarine
-    invalid_input = "Those are invalid coordinates. Please try again:"
-    assert_equal invalid_input, @human.place_submarine
   end
 
 
