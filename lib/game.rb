@@ -33,12 +33,12 @@ class Game
     invalid_count = 0
 
     if gets.chomp.downcase == "p"
-      puts "Ok! Time to set up our boards!"
+      p "Ok! Time to set up our boards!"
     elsif gets.chomp.downcase == "q"
-      puts "Maybe next time, Goodbye"
+      p "Maybe next time, Goodbye"
     else
       if invalid_count < 5
-        puts "Invalid response. Please type either p or q."
+        p "Invalid response. Please type either p or q."
         invalid_count += 1
         self.main_menu
       else
