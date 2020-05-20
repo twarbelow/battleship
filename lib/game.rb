@@ -52,7 +52,11 @@ class Game
       invalid_input_count += 1
       input = gets.chomp.downcase
     end
-    p response_options[input]
+    if input == "q"
+      abort(response_options[input])
+    else
+      p response_options[input]
+    end 
   end
 
   def valid_input?(input)
