@@ -11,7 +11,7 @@ class Human
 
   def place_cruiser
     loop do
-      puts "Enter the squares for the cruiser (3 spaces). Please do it in this format: B1, B2, B3."
+      puts "Enter the squares for the cruiser (3 spaces). Please do it in this format: B1, B2, B3"
       cruiser_coords = gets.chomp.upcase.gsub(',', '').split
       if board.valid_placement?(cruiser, cruiser_coords) == true
         @board.place(cruiser, cruiser_coords)
@@ -23,7 +23,7 @@ class Human
 
   def place_submarine
     loop do
-      puts "Enter the squares for the submarine (2 spaces):"
+      puts "Enter the squares for the submarine (2 spaces). Please do it in this format: C3, D3"
       submarine_coords = gets.chomp.upcase.gsub(',', '').split
       if board.valid_placement?(submarine, submarine_coords) == true
         @board.place(submarine, submarine_coords)
