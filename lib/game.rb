@@ -32,20 +32,25 @@ class Game
     puts "Welcome to BATTLESHIP"
     puts "Enter p to play. Enter q to quit."
     # invalid_count = 0
-
-    if gets.chomp.downcase == "p"
-      p "Ok! Time to set up our boards!"
-    elsif gets.chomp.downcase == "q"
-      p "Maybe next time! Goodbye."
-    # else
-    #   if invalid_count < 5
-    #     p "Invalid response. Please type either p or q."
-    #     invalid_count += 1
-    #     self.main_menu
-    #   else
-    #     abort ("This isn't fun for me anymore. Goodbye")
-    #   end
+    input = gets.chomp.downcase
+    invalid_input_count = 0
+    until valid_input?(input)
+      if invalid_input_count > 4
+        abort "This isn't fun for me anymore. Goodbye!"
+      end
+      p "Invalid response. Please type either p or q."
+      invalid_input_count += 1
+      input = gets.chomp.downcase
     end
+    puts response_options[input]
+  end
+
+  def valid_input?(input)
+    ["p", "q"].include?(input)
+  end
+
+  def response_options
+    {"p" => "Ok! Time to set up our boards!", "q" => "Maybe next time! Goodbye."}
   end
 
   def display_boards(computer, human)
