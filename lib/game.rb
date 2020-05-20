@@ -21,19 +21,13 @@ class Game
   def start
     main_menu
 
-    puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your ships."
-    puts "The Cruiser is three units long and the Submarine is two units long."
-
-    puts "  1 2 3 4"
-    puts "A . . . ."
-    puts "B . . . ."
-    puts "C . . . ."
-    puts "D . . . ."
-    # should all these puts be human.board.render ??
+    p "I have laid out my ships on the grid."
+    p "You now need to lay out your ships."
+    p "The Cruiser is three units long and the Submarine is two units long."
+    p "Here is what your board looks like right now:"
+    puts @human.board.render
 
     human_setup
-
     computer_setup
 
     play(computer, human)
