@@ -75,16 +75,16 @@ class Game
   def play(computer, human)
     loop do
       turn = Turn.new(computer, human)
-      turn.display_boards(computer, human)
+      turn.display_boards
       turn.player_turn(human)
       turn.computer_turn(computer)
       @computer_ship_count += turn.computer_ship_count
       @human_ship_count += turn.human_ship_count
       if computer_loses
         p "You won!"
-        turn.display_boards(computer, human)
+        turn.display_boards
       elsif human_loses
-        turn.display_boards(computer, human)
+        turn.display_boards
         p "I won!"
         break
       else
