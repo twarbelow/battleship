@@ -35,7 +35,6 @@ class Turn
       end
     end
     p "Please enter a valid coordinate."
-    end
   end
 
 
