@@ -74,6 +74,8 @@ class Game
 
   def play
     loop do
+
+#       system 'clear'
       turn = Turn.new(human, computer)
       turn.display_boards
       turn.player_turn(human)
@@ -83,9 +85,11 @@ class Game
       if computer_loses
         p "You won!"
         turn.display_boards
+        break
       elsif human_loses
         turn.display_boards
         p "I won!"
+        turn.display_boards(computer, human)
         break
       else
         next

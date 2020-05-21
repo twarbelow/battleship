@@ -15,9 +15,9 @@ class Turn
 
   def display_boards
     puts "==============COMPUTER BOARD=============="
-    puts computer.board.render
+    puts @computer.board.render
     puts "==============PLAYER BOARD=============="
-    puts human.board.render(true)
+    puts @human.board.render(true)
   end
 
   def player_turn(human)
