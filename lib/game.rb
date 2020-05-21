@@ -30,7 +30,7 @@ class Game
     human_setup
     computer_setup
 
-    play(computer, human)
+    play
   end
 
   def main_menu
@@ -72,20 +72,22 @@ class Game
     computer.place_submarine
   end
 
-  def play(computer, human)
+  def play
     loop do
-      system 'clear'
-      turn = Turn.new(computer, human)
-      turn.display_boards(computer, human)
+
+#       system 'clear'
+      turn = Turn.new(human, computer)
+      turn.display_boards
       turn.player_turn(human)
       turn.computer_turn(computer)
       @computer_ship_count += turn.computer_ship_count
       @human_ship_count += turn.human_ship_count
       if computer_loses
         p "You won!"
-        turn.display_boards(computer, human)
+        turn.display_boards
         break
       elsif human_loses
+        turn.display_boards
         p "I won!"
         turn.display_boards(computer, human)
         break
