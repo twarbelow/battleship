@@ -74,7 +74,7 @@ class Game
 
   def play
     loop do
-      turn = Turn.new(computer, human)
+      turn = Turn.new(human, computer)
       turn.display_boards
       turn.player_turn(human)
       turn.computer_turn(computer)
