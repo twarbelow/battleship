@@ -13,7 +13,7 @@ class Turn
     @computer_ship_count = 0
   end
 
-  def display_boards(computer, human)
+  def display_boards
     puts "==============COMPUTER BOARD=============="
     puts computer.board.render
     puts "==============PLAYER BOARD=============="
