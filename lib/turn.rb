@@ -15,9 +15,9 @@ class Turn
 
   def display_boards(computer, human)
     puts "==============COMPUTER BOARD=============="
-    puts computer.board.render
+    puts @computer.board.render
     puts "==============PLAYER BOARD=============="
-    puts human.board.render(true)
+    puts @human.board.render(true)
   end
 
   def player_turn(human)
@@ -31,7 +31,7 @@ class Turn
         elsif computer.board.cells[human_input].render(true) == "H"
           p "Your shot on #{human_input} was a hit."
         elsif computer.board.cells[human_input].render(true) == "X"
-          p "Your shot sunk my #{computer.board.cells[].ship.name}!"
+          p "Your shot sunk my #{computer.board.cells[human_input].ship.name}!"
           @computer_ship_count += 1
         end
         break
