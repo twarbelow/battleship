@@ -30,7 +30,7 @@ class Game
     human_setup
     computer_setup
 
-    play(computer, human)
+    play
   end
 
   def main_menu
@@ -72,7 +72,7 @@ class Game
     computer.place_submarine
   end
 
-  def play(computer, human)
+  def play
     loop do
       turn = Turn.new(computer, human)
       turn.display_boards
