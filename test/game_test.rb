@@ -19,6 +19,7 @@ class GameTest < Minitest::Test
   def test_it_has_main_menu
     # the invalid input test will not complete due to the abort in the code
     # wondering if there is a way around this
+    # invalid input will also run an endless loop when tests since the stub doesn't change
     # @game.stubs(:gets).returns("boogie")
     # assert_equal "Invalid response. Please type either p or q.", @game.main_menu
     @game.stubs(:gets).returns("Q")

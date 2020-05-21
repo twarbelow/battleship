@@ -31,25 +31,25 @@ class Turn
         elsif computer.board.cells[human_input].render(true) == "H"
           p "Your shot on #{human_input} was a hit."
         elsif computer.board.cells[human_input].render(true) == "X"
-          p "Your shot sunk my #{computer.board.cells.ship.name}!"
+          p "Your shot sunk my #{computer.board.cells[].ship.name}!"
           @computer_ship_count += 1
         end
         break
       end
-      puts "Please enter a valid coordinate."
+      p "Please enter a valid coordinate."
     end
 
 
     def computer_turn(computer)
       computer_input = human.board.cells.keys.sample
-      if human.board.valid_coordinate?(computer_input) == true
+      if human.board.valid_coordinates?(computer_input) == true
         human.board.cells[computer_input].fire_upon
         if human.board.cells[computer_input].render(true) == "M"
           p "Computer shot on #{computer_input} was a miss."
         elsif human.board.cells[computer_input].render(true) == "H"
           p "Computer shot on #{computer_input} was a hit."
         elsif human.board.cells[computer_input].render(true) == "X"
-          p "Computer shot on #{computer_input} sunk your #{human.board.cells.ship.name}!"
+          p "Computer shot on #{computer_input} sunk your #{human.board.cells[computer_input].ship.name}!"
           @human_ship_count += 1
         end
       end

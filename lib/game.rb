@@ -63,6 +63,7 @@ class Game
 
   def human_setup
     human.place_cruiser
+    # puts human.board.render (currently shows empty board here???)
     human.place_submarine
   end
 
