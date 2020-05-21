@@ -25,7 +25,7 @@ class Game
     p "You now need to lay out your ships."
     p "The Cruiser is three units long and the Submarine is two units long."
     p "Here is what your board looks like right now:"
-    puts @human.board.render
+    puts human.board.render
 
     human_setup
     computer_setup
@@ -63,7 +63,7 @@ class Game
 
   def human_setup
     human.place_cruiser
-    # puts human.board.render (currently shows empty board here???)
+    puts human.board.render(true)
     human.place_submarine
   end
 
@@ -75,7 +75,6 @@ class Game
   def play
     loop do
 
-#       system 'clear'
       turn = Turn.new(human, computer)
       turn.display_boards
       turn.player_turn(human)
@@ -106,12 +105,3 @@ class Game
     human_ship_count == 2
   end
 end
-
-# Optional To-Do:
-# could make printer class to handle all terminal output
-
-# would like to refactor so main_menu essentially reads:
-# greet_user
-# check_validity
-# p display_options[input]
-# not sure how to do this because of the input required..would have to store and reassign somewhere
