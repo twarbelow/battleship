@@ -38,20 +38,20 @@ class Turn
       end
       p "Please enter a valid coordinate."
     end
+  end
 
 
-    def computer_turn(computer)
-      computer_input = human.board.cells.keys.sample
-      if human.board.valid_coordinates?(computer_input) == true
-        human.board.cells[computer_input].fire_upon
-        if human.board.cells[computer_input].render(true) == "M"
-          p "Computer shot on #{computer_input} was a miss."
-        elsif human.board.cells[computer_input].render(true) == "H"
-          p "Computer shot on #{computer_input} was a hit."
-        elsif human.board.cells[computer_input].render(true) == "X"
-          p "Computer shot on #{computer_input} sunk your #{human.board.cells[computer_input].ship.name}!"
-          @human_ship_count += 1
-        end
+  def computer_turn(computer)
+    computer_input = human.board.cells.keys.sample
+    if human.board.valid_coordinates?(computer_input) == true
+      human.board.cells[computer_input].fire_upon
+      if human.board.cells[computer_input].render(true) == "M"
+        p "Computer shot on #{computer_input} was a miss."
+      elsif human.board.cells[computer_input].render(true) == "H"
+        p "Computer shot on #{computer_input} was a hit."
+      elsif human.board.cells[computer_input].render(true) == "X"
+        p "Computer shot on #{computer_input} sunk your #{human.board.cells[computer_input].ship.name}!"
+        @human_ship_count += 1
       end
     end
   end
