@@ -21,22 +21,20 @@ class Turn
   end
 
   def player_turn(human)
-    loop do
-      p "Enter the coordinate for your shot."
-      human_input = gets.chomp.upcase
-      if computer.board.valid_coordinates?(human_input) == true
-        computer.board.cells[human_input].fire_upon
-        if computer.board.cells[human_input].render(true) == "M"
-          p "Your shot on #{human_input} was a miss."
-        elsif computer.board.cells[human_input].render(true) == "H"
-          p "Your shot on #{human_input} was a hit."
-        elsif computer.board.cells[human_input].render(true) == "X"
-          p "Your shot sunk my #{computer.board.cells[human_input].ship.name}!"
-          @computer_ship_count += 1
-        end
-        break
+    p "Enter the coordinate for your shot."
+    human_input = gets.chomp.upcase
+    if computer.board.valid_coordinates?(human_input) == true
+      computer.board.cells[human_input].fire_upon
+      if computer.board.cells[human_input].render(true) == "M"
+        p "Your shot on #{human_input} was a miss."
+      elsif computer.board.cells[human_input].render(true) == "H"
+        p "Your shot on #{human_input} was a hit."
+      elsif computer.board.cells[human_input].render(true) == "X"
+        p "Your shot sunk my #{computer.board.cells[human_input].ship.name}!"
+        @computer_ship_count += 1
       end
-      p "Please enter a valid coordinate."
+    end
+    p "Please enter a valid coordinate."
     end
   end
 
