@@ -13,10 +13,6 @@ class Human
     loop do
       p "Enter the squares for the cruiser (3 spaces). Please do it in this format: B1, B2, B3"
       cruiser_coords = gets.chomp.upcase.gsub(',', '').split
-      # the cruiser_coords doesn't work for a bunch of user errors
-      # below is a hilarious way to do the above in a different order that kind of solved one user error
-      # don't know how to fix other user errors
-      # cruiser_coords = gets.chomp.upcase.split(",").map { |coordinate| coordinate.gsub(',', '')}
       if board.valid_placement?(cruiser, cruiser_coords) == true
         @board.place(cruiser, cruiser_coords)
         break("placed")
